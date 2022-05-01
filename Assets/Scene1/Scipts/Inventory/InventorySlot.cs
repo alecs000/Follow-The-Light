@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InventorySlot : IInventorySlot
 {
-    public bool isFull => amount==capacity;
+    public bool isFull => !isEmpty&& amount==capacity;
 
     public bool isEmpty => item==null;
 
@@ -13,7 +13,7 @@ public class InventorySlot : IInventorySlot
 
     public Type itemType => item.type;
 
-    public int amount => isEmpty ? 0 :item.amount;
+    public int amount => isEmpty ? 0 :item.state.amount;
 
     public int capacity { get; private set; }
     public void SetItem(IInventoryItem item)
@@ -23,7 +23,7 @@ public class InventorySlot : IInventorySlot
             return;
         }
         this.item = item;
-        this.capacity = item.maxItemsInInventorySlot;
+        this.capacity = item.info.maxItemsInInventorySlot;
     }
     public void Clear()
     {
@@ -31,7 +31,7 @@ public class InventorySlot : IInventorySlot
         {
             return;
         }
-        item.amount = 0;
+        item.state.amount = 0;
         item = null;
     }
 }

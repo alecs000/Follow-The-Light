@@ -5,10 +5,10 @@ using UnityEngine.Tilemaps;
 public class PlaerBehavior : MonoBehaviour
 {
     [SerializeField] float speed;
-    public Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Animator anim;
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
     }
     void FixedUpdate()
     {

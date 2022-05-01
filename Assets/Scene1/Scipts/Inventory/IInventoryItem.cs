@@ -4,10 +4,9 @@ using UnityEngine;
 using System;
 
 public interface IInventoryItem 
-{ 
-    bool isEquipped { get; set; }
+{
+    IInventoryItemInfo info { get; }
+    IInventoryItemState state { get; }
     Type type { get; }
-    int maxItemsInInventorySlot { get; }
-    int amount { get; set; }
     IInventoryItem Clone();
 }

@@ -9,6 +9,7 @@ public class InventoryWithSlots : IInventary
     public int capacity { get ; set ; }
     public event Action<object, IInventoryItem, int> OnInventoryItemAddedEvent;
     public event Action<object, Type, int> OnInventoryItemRemovedEvent;
+    public event Action<object> OnInventoryStateChangedEvent;
     public bool isFull => _slots.All(slot=>slot.isFull);
     List<IInventorySlot> _slots;
     public IInventoryItem[] GetAllItems()
@@ -50,7 +51,7 @@ public class InventoryWithSlots : IInventary
     public IInventoryItem[] GetEquippedItems()
     {
         var equiredItems = new List<IInventoryItem>();
-        var requiredSlots = _slots.FindAll(slot => !slot.item.isEquipped);
+        var requiredSlots = _slots.FindAll(slot => !slot.item.state.isEquipped);
         foreach (var slot in requiredSlots)
         {
             equiredItems.Add(slot.item);
@@ -90,7 +91,7 @@ public class InventoryWithSlots : IInventary
             var slot = slotsWithItem[i];
             if (slot.amount>= amountToRmove)
             {
-                slot.item.amount -= amountToRmove;
+                slot.item.state.amount -= amountToRmove;
                 if (slot.amount <= 0)
                 {
                     slot.Clear();
@@ -102,12 +103,48 @@ public class InventoryWithSlots : IInventary
             amountToRmove -= slot.amount;
             slot.Clear();
             OnInventoryItemRemovedEvent?.Invoke(sender, itemType, amountToRmove);
+            OnInventoryStateChangedEvent?.Invoke(sender);
         }
         
+    }
+    public void TrancitFromSlotToslot(object sender, IInventorySlot fromSlot,IInventorySlot toSlot)
+    {
+        if (fromSlot.isEmpty)
+        {
+            return;
+        }
+        if (toSlot.isFull)
+        {
+            return;
+        }
+        if (fromSlot == toSlot)
+        {
+            return;//μα νενΰδξ
+        }
+            var slotCapacity = fromSlot.capacity;
+        var fits = fromSlot.amount + toSlot.amount <= slotCapacity;
+        var amountToAdd = fits ? fromSlot.amount : slotCapacity - toSlot.amount;
+        var amountLeft = fromSlot.amount - amountToAdd;
+        if (toSlot.isEmpty)
+        {
+            toSlot.SetItem(fromSlot.item);
+            fromSlot.Clear();
+            OnInventoryStateChangedEvent?.Invoke(sender);
+        }
+        toSlot.item.state.amount += amountToAdd;
+        if (fits)
+            fromSlot.Clear();
+        else
+            fromSlot.item.state.amount = amountLeft;
+        OnInventoryStateChangedEvent?.Invoke(sender);
     }
     public IInventorySlot[] GetAllSlots(Type itemType)
     {
         return _slots.FindAll(slot => !slot.isEmpty && slot.itemType == itemType).ToArray();
+    }
+    public IInventorySlot[] GetAllSlots()
+    {
+        return _slots.ToArray();//νσσσσσσσσσσσσσσσσσσσσσσσσσσ υη
     }
     public bool TryToAdd(object sender, IInventoryItem item)
     {
@@ -123,39 +160,28 @@ public class InventoryWithSlots : IInventary
         }
         return false;
     }
-    private bool TryToAddToSlot(object sender, IInventorySlot slot, IInventoryItem item)
+    public bool TryToAddToSlot(object sender, IInventorySlot slot, IInventoryItem item)
     {
-        var fits = slot.amount + item.amount <= item.maxItemsInInventorySlot;
-        var amountToAdd = fits ? item.amount : item.maxItemsInInventorySlot - slot.amount;
-        var amountLeft = item.amount - amountToAdd;
+        var fits = slot.amount + item.state.amount <= item.info.maxItemsInInventorySlot;
+        var amountToAdd = fits ? item.state.amount : item.info.maxItemsInInventorySlot - slot.amount;
+        var amountLeft = item.state.amount - amountToAdd;
         var clonedItem = item.Clone();
-        clonedItem.amount = amountToAdd;
+        clonedItem.state.amount = amountToAdd;
         if (slot.isEmpty)
         {
             slot.SetItem(clonedItem);
         }
         else
         {
-            slot.item.amount += amountToAdd;
+            slot.item.state.amount += amountToAdd;
         }
         OnInventoryItemAddedEvent?.Invoke(sender, item, amountToAdd);
+        OnInventoryStateChangedEvent?.Invoke(sender);
         if (amountLeft<=0)
         {
             return true;
         }
-        item.amount = amountLeft;
+        item.state.amount = amountLeft;
         return TryToAdd(sender,item);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
