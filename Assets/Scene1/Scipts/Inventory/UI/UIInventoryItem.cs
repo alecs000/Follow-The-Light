@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class UIInventoryItem : MonoBehaviour
+public class UIInventoryItem : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField] Image _imageIcon;
     public IInventoryItem item { get; private set; }
     [SerializeField] Text _textAmount;
+    [SerializeField] GameObject ImageInfo;
+    [SerializeField] Text titleInfo;
+    [SerializeField] Text textInfo;
+    bool isActive;
     public void Refresh(IInventorySlot slot)
     {
         if (slot.isEmpty)
@@ -28,14 +33,19 @@ public class UIInventoryItem : MonoBehaviour
         _imageIcon.gameObject.SetActive(false);
         _textAmount.gameObject.SetActive(false);
     }
-    void Start()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
+        titleInfo.text = item.info.title;
+        textInfo.text = item.info.discription;
+        ImageInfo.SetActive(true);
+        isActive = true;
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            isActive = false;
+            ImageInfo.SetActive(false);
+        }
     }
 }

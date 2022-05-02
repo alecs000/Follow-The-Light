@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: InventoryItemInfoPapper
   m_EditorClassIdentifier: 
   _id: papper
-  _title: Papper
-  _discription: It is papper
+  _title: "\u0412\u0430\u0437\u0430"
+  _discription: "\u0416\u0443\u0442\u043A\u0430\u044F \u0433\u043E\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F
+    \u0432\u0430\u0437\u0430 \u0432\u0430\u0437\u0430"
   _maxItemsInInventorySlot: 4
-  _spriteIcon: {fileID: 21300000, guid: 030a7c0866a15594b935ef27d9bf261b, type: 3}
+  _spriteIcon: {fileID: 21300000, guid: a042d513670146449a0b2111e66d6025, type: 3}

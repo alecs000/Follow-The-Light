@@ -1,32 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloudBehavior : MonoBehaviour
 {
     [SerializeField] Animator animText;
     [SerializeField] Animator animImage;
+    [SerializeField] Text text;
+    [SerializeField] float timeDisappear;
     bool firstEnable = true;
     // Start is called before the first frame update
     void Start()
     {
         
     }
-
-    // Update is called once per frame
-    void Update()
+    public void EnableCloud(string text)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            EnableCloud();
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            DisableCloud();
-        }
-    }
-    private void EnableCloud()
-    {
+        this.text.text = text;
         if (firstEnable)
         {
             animText.SetBool("IsAppear", true);
@@ -42,6 +33,12 @@ public class CloudBehavior : MonoBehaviour
             animText.SetBool("DisAppear", true);
             animImage.SetBool("DisAppear", true);
         }
+        StartCoroutine(DisableCloudCor());
+    }
+    IEnumerator DisableCloudCor()
+    {
+        yield return new WaitForSeconds(timeDisappear);
+        DisableCloud();
     }
     private void DisableCloud()
     {

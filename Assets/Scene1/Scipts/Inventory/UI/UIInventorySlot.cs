@@ -11,6 +11,7 @@ public class UIInventorySlot : UISlot
     private void Awake()
     {
         _uIInventory = GetComponentInParent<UIInventory>();
+        Refresh();
     }
     public void SetSlot(IInventorySlot newSlot)
     {
@@ -20,9 +21,7 @@ public class UIInventorySlot : UISlot
     {
         var otherItemUI = eventData.pointerDrag.GetComponent<UIInventoryItem>();
         var otherSlotUI = otherItemUI.GetComponentInParent<UIInventorySlot>();
-        Debug.Log(otherSlotUI);
         var otherSlot = otherSlotUI.slot;
-        Debug.Log(otherSlot);
         var inventory = _uIInventory.inventory;
         inventory.TrancitFromSlotToslot(this, otherSlot, slot);
         Refresh();

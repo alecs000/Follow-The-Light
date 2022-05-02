@@ -15,6 +15,7 @@ public class UIItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
         _mainCanvas = GetComponentInParent<Canvas>();
         _canvasGroup = GetComponent<CanvasGroup>();
     }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         var slotTransform = _rectTransform.parent;

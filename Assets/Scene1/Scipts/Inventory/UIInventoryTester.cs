@@ -8,6 +8,8 @@ public class UIInventoryTester
     private InventoryItemInfo _papperInfo;
     private UIInventorySlot[] _uiSlots;
     public InventoryWithSlots inventory { get; }
+    List<IInventorySlot> avalibleSlots;
+    IInventorySlot[] allSlots;
     public UIInventoryTester(InventoryItemInfo appleInfo,InventoryItemInfo papperInfo,UIInventorySlot[] uiSlots)
     {
         _appleInfo = appleInfo;
@@ -15,19 +17,26 @@ public class UIInventoryTester
         _uiSlots = uiSlots;
         inventory = new InventoryWithSlots(7);
         inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
+        allSlots = inventory.GetAllSlots();
+        avalibleSlots = new List<IInventorySlot>(allSlots);
     }
-    public void FillSlots()
+    ///<summary>
+    ///яблоко - 0
+    ///Pepper - 1
+    ///</summary>
+    public void FillSlots(int numItem)
     {
-        var allSlots = inventory.GetAllSlots();
-        var avalibleSlots = new List<IInventorySlot>(allSlots);
-        var filledSlots = 3;
-        for(int i = 0; i < filledSlots; i++)
+        IInventorySlot filledSlot = new InventorySlot();
+        Debug.Log(numItem);
+        if (numItem == 0)
         {
-            var filledSlot = AddRandomApplesIntoRandomSlot(avalibleSlots);
-            avalibleSlots.Remove(filledSlot);
-            filledSlot = AddRandomPappersIntoRandomSlot(avalibleSlots);
-            avalibleSlots.Remove(filledSlot);
+            filledSlot = AddAppleIntoSlot(avalibleSlots);
         }
+        if (numItem == 1)
+        {
+            filledSlot = AddPepperIntoSlot(avalibleSlots);
+        }
+        avalibleSlots.Remove(filledSlot);
         SetupInventoryUI(inventory);
     }
     private void SetupInventoryUI(InventoryWithSlots inventory)
@@ -41,6 +50,25 @@ public class UIInventoryTester
             uiSlot.SetSlot(slot);
             uiSlot.Refresh();
         }
+    }
+
+    IInventorySlot AddAppleIntoSlot(List<IInventorySlot> slots)
+    {
+        var rSlot = slots[0];
+        var apple = new Apple(_appleInfo);
+        apple.state.amount = 1;
+        inventory.TryToAddToSlot(this, rSlot, apple);
+        return rSlot;
+
+    }
+    IInventorySlot AddPepperIntoSlot(List<IInventorySlot> slots)
+    {
+        var rSlot = slots[0];
+        var papper = new Papper(_papperInfo);
+        papper.state.amount = 1;
+        inventory.TryToAddToSlot(this, rSlot, papper);
+        return rSlot;
+
     }
     IInventorySlot AddRandomApplesIntoRandomSlot(List<IInventorySlot> slots)
     {

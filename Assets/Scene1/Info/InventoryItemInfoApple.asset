@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad66705554c2b9b47afb7ed1dc412f9d, type: 3}
   m_Name: InventoryItemInfoApple
   m_EditorClassIdentifier: 
-  _id: apple
-  _title: Apple
-  _discription: It is apple
+  _id: book1
+  _title: "\u0417\u0430\u043F\u0438\u0441\u043A\u0430"
+  _discription: "\u0422\u0443\u0442 \u0447\u0442\u043E-\u0442\u043E \u043D\u0430\u043F\u0438\u0441\u0430\u043D\u043E"
   _maxItemsInInventorySlot: 3
-  _spriteIcon: {fileID: 21300000, guid: fc09665dfbfe64a48a76b9ca8bf319ed, type: 3}
+  _spriteIcon: {fileID: 21300000, guid: c9e3877b9fd4fe249bace9fe8a6236ff, type: 3}
