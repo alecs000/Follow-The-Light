@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad66705554c2b9b47afb7ed1dc412f9d, type: 3}
   m_Name: InventoryItemInfoPapper
   m_EditorClassIdentifier: 
-  _id: "keyFrom\u0421abinet"
-  _title: "\u041A\u043B\u044E\u0447 \u043E\u0442 \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0430
-    \u0414\u0435\u0434\u0430"
-  _discription: "\u0412\u0441\u0435\u0433\u0434\u0430 \u0445\u043E\u0442\u0435\u043B
-    \u0435\u0433\u043E \u0441\u0442\u0430\u0449\u0438\u0442\u044C"
-  _maxItemsInInventorySlot: 1
-  _spriteIcon: {fileID: 21300000, guid: e052f9a16fe4bd44899637e245b42178, type: 3}
+  _id: papper
+  _title: "\u0412\u0430\u0437\u0430"
+  _discription: "\u0416\u0443\u0442\u043A\u0430\u044F \u0433\u043E\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F
+    \u0432\u0430\u0437\u0430 \u0432\u0430\u0437\u0430"
+  _maxItemsInInventorySlot: 4
+  _spriteIcon: {fileID: 21300000, guid: a042d513670146449a0b2111e66d6025, type: 3}

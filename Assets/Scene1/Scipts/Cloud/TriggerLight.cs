@@ -12,13 +12,11 @@ public class TriggerLight : MonoBehaviour
     [SerializeField] Material lightMaterial;
     [SerializeField] Material shadowMaterial;
     [SerializeField] UIInventory uIInventory;
-    [SerializeField] int[] numItem;
+    [SerializeField] int numItem;
     [SerializeField] int timeClick = 1;
     [SerializeField] bool isRoom;
     [SerializeField] bool hide;
     [SerializeField] string keyId;
-    [SerializeField] bool inLivihRoom =true;
-    [SerializeField] AudioSource source;
     int amountClick = 0;
     bool wasGet;
     private void Start()
@@ -34,14 +32,11 @@ public class TriggerLight : MonoBehaviour
     }
     public void AddItem()
     {
-        foreach (var item in numItem)
+        uIInventory.tester.FillSlots(numItem);
+        wasGet = true;
+        if (hide)
         {
-            uIInventory.tester.FillSlots(item);
-            wasGet = true;
-            if (hide)
-            {
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
+            gameObject.GetComponent<SpriteRenderer>().enabled= false;
         }
     }
     public void RemoveItem()
@@ -59,16 +54,9 @@ public class TriggerLight : MonoBehaviour
                 {
                     if (item.info.id == keyId)
                     {
-                        source.Play();
-                        if (keyId== "KeyLivingRoom"&& inLivihRoom)
+                        if (keyId== "KeyLivingRoom")
                         {
                             cloud.transform.position = new Vector2(13, -13);
-                            break;
-                        }
-                        if (keyId == "KeyLivingRoom"&& !inLivihRoom)
-                        {
-                            cloud.transform.position = new Vector2(-3, 1.7f);
-                            break;
                         }
                     }
                 }

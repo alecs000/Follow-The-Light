@@ -32,7 +32,7 @@ public class PlaerBehavior : MonoBehaviour
         float vertic = Input.GetAxisRaw("Vertical");
         if (Mathf.Abs(horiz) > 0)
         {
-            rb.velocity = new Vector2(horiz*speed, rb.velocity.y);
+            rb.velocity = new Vector2(horiz, rb.velocity.y);
         }
         else
         {
