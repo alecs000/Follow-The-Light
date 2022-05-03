@@ -7,12 +7,24 @@ public class PlaerBehavior : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator anim;
+    bool stop;
     void Start()
     {
     }
     void FixedUpdate()
     {
-        MovementLogic();
+        if (!stop)
+        {
+            MovementLogic();
+        }
+    }
+    public void StopPlaer()
+    {
+        stop = true;
+    }
+    public void PushPlaer()
+    {
+        stop = false;
     }
     private void MovementLogic()
     {

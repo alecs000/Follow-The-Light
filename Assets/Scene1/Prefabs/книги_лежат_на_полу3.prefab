@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 495319707}
   - component: {fileID: 495319709}
   - component: {fileID: 495319708}
-  m_Layer: 0
+  - component: {fileID: 1918327924}
+  m_Layer: 2
   m_Name: coolider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inTrigger: 0
   sprite: {fileID: 5259061588112946539}
+  shadowMaterial: {fileID: 2100000, guid: adb30ea5e48487d4887e18e58d9dbe1b, type: 2}
+  click: {fileID: 1153444412}
 --- !u!61 &495319708
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -72,6 +75,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.8893882, y: 2.1914043}
   m_EdgeRadius: 0
+--- !u!210 &1918327924
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495319706}
+  m_Enabled: 1
+  m_SortingLayerID: 2119704323
+  m_SortingLayer: 1
+  m_SortingOrder: 0
 --- !u!1 &5259061588112946540
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,6 +99,7 @@ GameObject:
   - component: {fileID: 5259061588112946538}
   - component: {fileID: 5259061588112946541}
   - component: {fileID: 1830949281}
+  - component: {fileID: 1153444412}
   m_Layer: 0
   m_Name: "\u043A\u043D\u0438\u0433\u0438_\u043B\u0435\u0436\u0430\u0442_\u043D\u0430_\u043F\u043E\u043B\u04433"
   m_TagString: Untagged
@@ -144,8 +159,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2119704323
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 87886a5bbbc33a54c8981a693bf860fc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -237,3 +252,22 @@ MonoBehaviour:
   lightMaterial: {fileID: 2100000, guid: d0cb0f2d3426cef428850e0ab4218342, type: 2}
   shadowMaterial: {fileID: 2100000, guid: adb30ea5e48487d4887e18e58d9dbe1b, type: 2}
   uIInventory: {fileID: 0}
+  numItem: 0
+  timeClick: 1000
+  isRoom: 0
+  keyId: 
+--- !u!114 &1153444412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259061588112946540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc03961113fa349c09cb06ef2911013d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickEnabled: 0
+  hoverCursor: {fileID: 0}
+  useEventSystem: 0

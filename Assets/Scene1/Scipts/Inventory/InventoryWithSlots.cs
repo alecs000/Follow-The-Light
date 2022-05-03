@@ -47,6 +47,16 @@ public class InventoryWithSlots : IInventary
         }
         return allItemsOfType.ToArray();
     }
+    public IInventoryItem[] GetAllItem()
+    {
+        var allItemsOfType = new List<IInventoryItem>();
+        var slotsOfType = _slots.FindAll(slot => !slot.isEmpty);
+        foreach (var slot in slotsOfType)
+        {
+            allItemsOfType.Add(slot.item);
+        }
+        return allItemsOfType.ToArray();
+    }
 
     public IInventoryItem[] GetEquippedItems()
     {
