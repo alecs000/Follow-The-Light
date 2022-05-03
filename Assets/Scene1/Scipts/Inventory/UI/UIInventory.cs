@@ -11,11 +11,12 @@ public class UIInventory : MonoBehaviour
     [SerializeField] InventoryItemInfo _keyInfo;
     [SerializeField] InventoryItemInfo _swordInfo;
     [SerializeField] InventoryItemInfo _keyFromPicInfo;
+    [SerializeField] InventoryItemInfo _keyFromChildrenInfo;
 
     public UIInventoryTester tester;
     private void Start()
     {
         var uiSlots = GetComponentsInChildren<UIInventorySlot>();
-        tester = new UIInventoryTester(_appleInfo, _papperInfo, _skullInfo, _keyInfo, _swordInfo, _keyFromPicInfo, uiSlots);
+        tester = new UIInventoryTester(_appleInfo, _papperInfo, _skullInfo, _keyInfo, _swordInfo, _keyFromPicInfo, _keyFromChildrenInfo, uiSlots);
     }
 }
