@@ -12,11 +12,15 @@ public class TriggerLight : MonoBehaviour
     [SerializeField] Material lightMaterial;
     [SerializeField] Material shadowMaterial;
     [SerializeField] UIInventory uIInventory;
-    [SerializeField] int numItem;
+    [SerializeField] bool itIsRemove;
+    [SerializeField] int[] numItem;
     [SerializeField] int timeClick = 1;
     [SerializeField] bool isRoom;
     [SerializeField] bool hide;
     [SerializeField] string keyId;
+    [Tooltip("0 - хол; 1 - гостинная")]
+    [SerializeField] int onRoomNum;
+    
     int amountClick = 0;
     bool wasGet;
     private void Start()
@@ -32,17 +36,19 @@ public class TriggerLight : MonoBehaviour
     }
     public void AddItem()
     {
-        uIInventory.tester.FillSlots(numItem);
-        wasGet = true;
-        if (hide)
+        foreach (var item in numItem)
         {
-            gameObject.GetComponent<SpriteRenderer>().enabled= false;
+            uIInventory.tester.FillSlots(item);
+            wasGet = true;
+            if (hide)
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
         }
     }
     public void RemoveItem()
     {
-        Debug.Log(2143324);
-        uIInventory.tester.ClearSlots(keyId);
+        uIInventory.tester.ClearSlot(keyId);
     }
     private void OnMouseDown()
     {
@@ -56,15 +62,31 @@ public class TriggerLight : MonoBehaviour
                     {
                         if (keyId== "KeyLivingRoom")
                         {
-                            cloud.transform.position = new Vector2(13, -13);
+                            if (onRoomNum == 0)
+                            {
+                                cloud.transform.position = new Vector2(-3, 1.7f);
+                                break;
+                            }
+                            if (onRoomNum==1)
+                            {
+                                cloud.transform.position = new Vector2(13, -13);
+                                break;
+                            }
                         }
                     }
                 }
             }
-            amountClick++;
-            if (!wasGet && amountClick== timeClick)
+            if ((itIsRemove))
             {
-                AddItem();
+                RemoveItem();
+            }
+            else
+            {
+                amountClick++;
+                if (!wasGet && amountClick == timeClick)
+                {
+                    AddItem();
+                }
             }
         }
     }

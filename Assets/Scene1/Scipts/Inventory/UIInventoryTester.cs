@@ -29,8 +29,8 @@ public class UIInventoryTester
         avalibleSlots = new List<IInventorySlot>(allSlots);
     }
     ///<summary>
-    ///Яблоко - 0
-    ///Pepper - 1
+    ///ключ от детской - 0
+    ///ключи от кабинета - 1
     ///Skull - 2
     ///Key - 3
     ///sword - 4
@@ -79,7 +79,20 @@ public class UIInventoryTester
         avalibleSlots.Add(new InventorySlot());
         SetupInventoryUI(inventory);
     }
-        private void SetupInventoryUI(InventoryWithSlots inventory)
+    public void ClearSlot(string keyId)
+    {
+        foreach (var item in allSlots)
+        {
+            if (keyId == item?.item?.info?.id)
+            {
+                item.Clear();
+                break;
+            }
+        }
+        avalibleSlots.Add(new InventorySlot());
+        SetupInventoryUI(inventory);
+    }
+    private void SetupInventoryUI(InventoryWithSlots inventory)
     {
         var allSlots = inventory.GetAllSlots();
         var allSlotsCount = allSlots.Length;
