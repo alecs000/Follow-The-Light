@@ -7,9 +7,11 @@ public class PlaerBehavior : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Animator anim;
+    [SerializeField] UIInventory uIInventory;
     bool stop;
     void Start()
     {
+        uIInventory.StartInventory();
     }
     void FixedUpdate()
     {

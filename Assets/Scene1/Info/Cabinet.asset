@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cabinet
   m_EditorClassIdentifier: 
   _id: keysFromCabinet
-  _title: "\u043A\u043B\u044E\u0447\u0438 \u043E\u0442 \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0430"
-  _discription: "\u043F\u043E\u0442\u0451\u0440\u0442\u044B\u0435"
+  _title: "\u041A\u043B\u044E\u0447 \u043E\u0442 \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0430"
+  _discription: "\u041F\u043E\u0442\u0451\u0440\u0442\u044B\u0439"
   _maxItemsInInventorySlot: 1
   _spriteIcon: {fileID: 21300000, guid: e052f9a16fe4bd44899637e245b42178, type: 3}

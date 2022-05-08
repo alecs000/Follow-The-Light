@@ -40,10 +40,6 @@ public class TriggerLight : MonoBehaviour
         {
             uIInventory.tester.FillSlots(item);
             wasGet = true;
-            if (hide)
-            {
-                gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
         }
     }
     public void RemoveItem()

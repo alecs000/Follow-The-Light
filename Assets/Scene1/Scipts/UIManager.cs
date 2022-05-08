@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] GameObject menu;
-    public void Open()
+    bool isActive;
+    public void Open(GameObject menu)
     {
-        menu.SetActive(true);
+        if (!isActive)
+        {
+            menu.SetActive(true);
+            isActive = true;
+            return;
+        }
+        menu.SetActive(false);
+        isActive = false;
     }
-    public void Close()
+    public void Close(GameObject menu)
     {
         menu.SetActive(false);
+        isActive = false;
     }
 }

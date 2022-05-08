@@ -10,11 +10,12 @@ public class UIInventoryTester
     private InventoryItemInfo _keyInfo;
     private InventoryItemInfo _swordInfo;
     private InventoryItemInfo _keyFromPicInfo;
+    private InventoryItemInfo _flashlight;
     private UIInventorySlot[] _uiSlots;
     public InventoryWithSlots inventory { get; }
     List<IInventorySlot> avalibleSlots;
     IInventorySlot[] allSlots;
-    public UIInventoryTester(InventoryItemInfo appleInfo,InventoryItemInfo papperInfo, InventoryItemInfo skullInfo, InventoryItemInfo keyInfo, InventoryItemInfo swordInfo, InventoryItemInfo keyFromPicInfo, UIInventorySlot[] uiSlots)
+    public UIInventoryTester(InventoryItemInfo appleInfo, InventoryItemInfo papperInfo, InventoryItemInfo skullInfo, InventoryItemInfo keyInfo, InventoryItemInfo swordInfo, InventoryItemInfo keyFromPicInfo, InventoryItemInfo flashlight, UIInventorySlot[] uiSlots)
     {
         _swordInfo = swordInfo;
         _keyInfo = keyInfo;
@@ -22,8 +23,9 @@ public class UIInventoryTester
         _papperInfo = papperInfo;
         _skullInfo = skullInfo;
         _keyFromPicInfo = keyFromPicInfo;
+        _flashlight = flashlight;
         _uiSlots = uiSlots;
-        inventory = new InventoryWithSlots(7);
+        inventory = new InventoryWithSlots(8);
         inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
         allSlots = inventory.GetAllSlots();
         avalibleSlots = new List<IInventorySlot>(allSlots);
@@ -32,9 +34,10 @@ public class UIInventoryTester
     ///ключ от детской - 0
     ///ключи от кабинета - 1
     ///Skull - 2
-    ///Key - 3
+    ///Key от гостинной - 3
     ///sword - 4
     ///KeyFromPic - 5
+    ///Фонарь - 6
     ///</summary>
     public void FillSlots(int numItem)
     {
@@ -63,6 +66,10 @@ public class UIInventoryTester
         if (numItem == 5)
         {
             filledSlot = AddKeyFromPicIntoSlot(avalibleSlots);
+        }
+        if (numItem == 6)
+        {
+            filledSlot = AddFlashlightIntoSlot(avalibleSlots);
         }
         avalibleSlots.Remove(filledSlot);
         SetupInventoryUI(inventory);
@@ -150,6 +157,14 @@ public class UIInventoryTester
         var keyFromPic = new KeyFromPic(_keyFromPicInfo);
         keyFromPic.state.amount = 1;
         inventory.TryToAddToSlot(this, rSlot, keyFromPic);
+        return rSlot;
+    }
+    IInventorySlot AddFlashlightIntoSlot(List<IInventorySlot> slots)
+    {
+        var rSlot = slots[0];
+        var flashlight = new Flashlight(_flashlight);
+        flashlight.state.amount = 1;
+        inventory.TryToAddToSlot(this, rSlot, flashlight);
         return rSlot;
     }
     void OnInventoryStateChanged(object sender)

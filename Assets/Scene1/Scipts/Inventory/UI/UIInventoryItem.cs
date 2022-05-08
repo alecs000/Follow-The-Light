@@ -7,7 +7,6 @@ public class UIInventoryItem : MonoBehaviour, IPointerClickHandler
     [SerializeField] Image _imageIcon;
     public IInventoryItem item { get; private set; }
     [SerializeField] Text _textAmount;
-    [SerializeField] GameObject ImageInfo;
     [SerializeField] Text titleInfo;
     [SerializeField] Text textInfo;
     bool isActive;
@@ -37,15 +36,11 @@ public class UIInventoryItem : MonoBehaviour, IPointerClickHandler
     {
         titleInfo.text = item.info.title;
         textInfo.text = item.info.discription;
-        ImageInfo.SetActive(true);
-        isActive = true;
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            isActive = false;
-            ImageInfo.SetActive(false);
         }
     }
 }

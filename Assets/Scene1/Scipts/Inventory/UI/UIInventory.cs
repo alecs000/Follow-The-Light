@@ -11,11 +11,13 @@ public class UIInventory : MonoBehaviour
     [SerializeField] InventoryItemInfo _keyInfo;
     [SerializeField] InventoryItemInfo _swordInfo;
     [SerializeField] InventoryItemInfo _keyFromPicInfo;
+    [SerializeField] InventoryItemInfo _flashlight;
 
     public UIInventoryTester tester;
-    private void Start()
+    public void StartInventory()
     {
         var uiSlots = GetComponentsInChildren<UIInventorySlot>();
-        tester = new UIInventoryTester(_appleInfo, _papperInfo, _skullInfo, _keyInfo, _swordInfo, _keyFromPicInfo, uiSlots);
+        tester = new UIInventoryTester(_appleInfo, _papperInfo, _skullInfo, _keyInfo, _swordInfo, _keyFromPicInfo, _flashlight, uiSlots);
+        tester.FillSlots(6);
     }
 }
