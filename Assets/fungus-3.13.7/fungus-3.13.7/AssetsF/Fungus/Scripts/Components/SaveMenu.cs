@@ -233,6 +233,20 @@ namespace Fungus
 
             saveMenuActive = !saveMenuActive;
         }
+        public void CloseSaveMenu()
+        {
+            // Switch menu off
+            LeanTween.value(saveMenuGroup.gameObject, saveMenuGroup.alpha, 0f, 0.2f)
+                    .setEase(LeanTweenType.easeOutQuint)
+                    .setOnUpdate((t) =>
+                    {
+                        saveMenuGroup.alpha = t;
+                    }).setOnComplete(() =>
+                    {
+                        saveMenuGroup.alpha = 0f;
+                    });
+            saveMenuActive = !saveMenuActive;
+        }
 
         /// <summary>
         /// Handler function called when the Save button is pressed.

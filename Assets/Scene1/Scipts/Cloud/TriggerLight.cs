@@ -20,11 +20,18 @@ public class TriggerLight : MonoBehaviour
     [SerializeField] string keyId;
     [Tooltip("0 - хол; 1 - гостинная")]
     [SerializeField] int onRoomNum;
-    
+    [SerializeField] GameObject canvasAnim;
+    Animation anim;
+    [SerializeField] GameObject camera;
+
     int amountClick = 0;
     bool wasGet;
     private void Start()
     {
+        if (isRoom)
+        {
+            anim = canvasAnim.GetComponent<Animation>();
+        }
     }
     private void OnMouseEnter()
     {
@@ -32,6 +39,7 @@ public class TriggerLight : MonoBehaviour
         {
             sprite.material = lightMaterial;
             sprite.color = new Color(0.65f, 0.65f, 0.65f, 1);
+
         }
     }
     public void AddItem()
@@ -56,19 +64,19 @@ public class TriggerLight : MonoBehaviour
                 {
                     if (item.info.id == keyId)
                     {
-                        if (keyId== "KeyLivingRoom")
-                        {
+                        anim.Play();
                             if (onRoomNum == 0)
                             {
                                 cloud.transform.position = new Vector2(-3, 1.7f);
-                                break;
+                            camera.transform.position = new Vector2(-3, 1.7f);
+                            break;
                             }
                             if (onRoomNum==1)
                             {
                                 cloud.transform.position = new Vector2(13, -13);
-                                break;
+                            camera.transform.position = new Vector2(13, -13);
+                            break;
                             }
-                        }
                     }
                 }
             }

@@ -10,7 +10,7 @@ public class CameraFollow2D : MonoBehaviour
     {
         if (playerTransform)
         {
-            Vector3 target =new Vector3(playerTransform.position.x, playerTransform.position.y, playerTransform.position.z - 5);
+            Vector3 target =new Vector3(playerTransform.position.x, playerTransform.position.y, -6.71f);
             Vector3 pos = Vector3.Lerp(this.transform.position, target, movingSpeed * Time.deltaTime);
             transform.position = pos;
         }

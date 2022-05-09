@@ -194,9 +194,19 @@ namespace Fungus
 
             narrativeLogActive = !narrativeLogActive;
         }
-    
-        #endregion
-    }
+        public virtual void CloseNarrativeLogView()
+        {   // Switch menu off
+            LeanTween.value(narrativeLogMenuGroup.gameObject, narrativeLogMenuGroup.alpha, 0f, .2f)
+                .setEase(LeanTweenType.easeOutQuint)
+                .setOnUpdate((t) => {
+                    narrativeLogMenuGroup.alpha = t;
+                }).setOnComplete(() => {
+                    narrativeLogMenuGroup.alpha = 0f;
+                });
+            narrativeLogActive = !narrativeLogActive;
+        }
+            #endregion
+        }
 }
 
 #endif
