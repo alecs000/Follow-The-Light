@@ -77,6 +77,12 @@ public class TriggerLight : MonoBehaviour
                             camera.transform.position = new Vector2(13, -13);
                             break;
                             }
+                        if (onRoomNum == 2)
+                        {
+                            cloud.transform.position = new Vector2(33.6f, 2.35f);
+                            camera.transform.position = new Vector2(33.6f, 2.35f);
+                            break;
+                        }
                     }
                 }
             }
