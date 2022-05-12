@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad66705554c2b9b47afb7ed1dc412f9d, type: 3}
+  m_Name: Crutch
+  m_EditorClassIdentifier: 
+  _id: crutch
+  _title: "\u041A\u043E\u0441\u0442\u044B\u043B\u044C"
+  _discription: "\u041A\u0440\u0435\u043F\u043A\u0438\u0439"
+  _maxItemsInInventorySlot: 1
+  _spriteIcon: {fileID: 21300000, guid: de4da599d549d2041a4b29dc2054342c, type: 3}

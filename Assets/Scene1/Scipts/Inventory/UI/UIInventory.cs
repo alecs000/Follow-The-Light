@@ -12,12 +12,13 @@ public class UIInventory : MonoBehaviour
     [SerializeField] InventoryItemInfo _swordInfo;
     [SerializeField] InventoryItemInfo _keyFromPicInfo;
     [SerializeField] InventoryItemInfo _flashlight;
-
+    [SerializeField] InventoryItemInfo _crutchInfo;
+    [SerializeField] InventoryItemInfo _knifeInfo;
     public UIInventoryTester tester;
     public void StartInventory()
     {
         var uiSlots = GetComponentsInChildren<UIInventorySlot>();
-        tester = new UIInventoryTester(_appleInfo, _papperInfo, _skullInfo, _keyInfo, _swordInfo, _keyFromPicInfo, _flashlight, uiSlots);
+        tester = new UIInventoryTester(_appleInfo, _papperInfo, _skullInfo, _keyInfo, _swordInfo, _keyFromPicInfo, _flashlight, _crutchInfo, _knifeInfo, uiSlots);
         tester.FillSlots(6);
     }
 }

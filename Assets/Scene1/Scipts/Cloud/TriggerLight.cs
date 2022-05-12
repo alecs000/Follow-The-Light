@@ -16,14 +16,13 @@ public class TriggerLight : MonoBehaviour
     [SerializeField] int[] numItem;
     [SerializeField] int timeClick = 1;
     [SerializeField] bool isRoom;
-    [SerializeField] bool hide;
     [SerializeField] string keyId;
     [Tooltip("0 - хол; 1 - гостинная")]
     [SerializeField] int onRoomNum;
     [SerializeField] GameObject canvasAnim;
     Animation anim;
-    [SerializeField] GameObject camera;
-
+    [SerializeField] GameObject cam;
+    [SerializeField] AudioSource audioSource;
     int amountClick = 0;
     bool wasGet;
     private void Start()
@@ -64,23 +63,30 @@ public class TriggerLight : MonoBehaviour
                 {
                     if (item.info.id == keyId)
                     {
+                        audioSource.Play();
                         anim.Play();
                             if (onRoomNum == 0)
                             {
                                 cloud.transform.position = new Vector2(-3, 1.7f);
-                            camera.transform.position = new Vector2(-3, 1.7f);
+                            cam.transform.position = new Vector2(-3, 1.7f);
                             break;
                             }
                             if (onRoomNum==1)
                             {
                                 cloud.transform.position = new Vector2(13, -13);
-                            camera.transform.position = new Vector2(13, -13);
+                            cam.transform.position = new Vector2(13, -13);
                             break;
                             }
                         if (onRoomNum == 2)
                         {
                             cloud.transform.position = new Vector2(33.6f, 2.35f);
-                            camera.transform.position = new Vector2(33.6f, 2.35f);
+                            cam.transform.position = new Vector2(33.6f, 2.35f);
+                            break;
+                        }
+                        if (onRoomNum == 3)
+                        {
+                            cloud.transform.position = new Vector2(12.2f, 20.89f);
+                            cam.transform.position = new Vector2(12.2f, 20.89f);
                             break;
                         }
                     }

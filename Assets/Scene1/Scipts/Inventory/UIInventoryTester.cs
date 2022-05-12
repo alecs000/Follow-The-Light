@@ -11,11 +11,14 @@ public class UIInventoryTester
     private InventoryItemInfo _swordInfo;
     private InventoryItemInfo _keyFromPicInfo;
     private InventoryItemInfo _flashlight;
+    private InventoryItemInfo _crutchInfo;
+    private InventoryItemInfo _knifeInfo;
     private UIInventorySlot[] _uiSlots;
     public InventoryWithSlots inventory { get; }
     List<IInventorySlot> avalibleSlots;
     IInventorySlot[] allSlots;
-    public UIInventoryTester(InventoryItemInfo appleInfo, InventoryItemInfo papperInfo, InventoryItemInfo skullInfo, InventoryItemInfo keyInfo, InventoryItemInfo swordInfo, InventoryItemInfo keyFromPicInfo, InventoryItemInfo flashlight, UIInventorySlot[] uiSlots)
+    public UIInventoryTester(InventoryItemInfo appleInfo, InventoryItemInfo papperInfo, InventoryItemInfo skullInfo, InventoryItemInfo keyInfo,
+        InventoryItemInfo swordInfo, InventoryItemInfo keyFromPicInfo, InventoryItemInfo flashlight, InventoryItemInfo crutchInfo, InventoryItemInfo knifeInfo, UIInventorySlot[] uiSlots)
     {
         _swordInfo = swordInfo;
         _keyInfo = keyInfo;
@@ -24,7 +27,9 @@ public class UIInventoryTester
         _skullInfo = skullInfo;
         _keyFromPicInfo = keyFromPicInfo;
         _flashlight = flashlight;
+        _crutchInfo = crutchInfo;
         _uiSlots = uiSlots;
+        _knifeInfo = knifeInfo;
         inventory = new InventoryWithSlots(8);
         inventory.OnInventoryStateChangedEvent += OnInventoryStateChanged;
         allSlots = inventory.GetAllSlots();
@@ -38,6 +43,8 @@ public class UIInventoryTester
     ///sword - 4
     ///KeyFromPic - 5
     ///Фонарь - 6
+    ///костыль - 7
+    ///кинжал - 8
     ///</summary>
     public void FillSlots(int numItem)
     {
@@ -70,6 +77,14 @@ public class UIInventoryTester
         if (numItem == 6)
         {
             filledSlot = AddFlashlightIntoSlot(avalibleSlots);
+        }
+        if (numItem == 7)
+        {
+            filledSlot = AddCrutchIntoSlot(avalibleSlots);
+        }
+        if (numItem == 8)
+        {
+            filledSlot = AddKnifeIntoSlot(avalibleSlots);
         }
         avalibleSlots.Remove(filledSlot);
         SetupInventoryUI(inventory);
@@ -165,6 +180,22 @@ public class UIInventoryTester
         var flashlight = new Flashlight(_flashlight);
         flashlight.state.amount = 1;
         inventory.TryToAddToSlot(this, rSlot, flashlight);
+        return rSlot;
+    }
+    IInventorySlot AddCrutchIntoSlot(List<IInventorySlot> slots)
+    {
+        var rSlot = slots[0];
+        var crutch = new Crutch(_crutchInfo);
+        crutch.state.amount = 1;
+        inventory.TryToAddToSlot(this, rSlot, crutch);
+        return rSlot;
+    }
+    IInventorySlot AddKnifeIntoSlot(List<IInventorySlot> slots)
+    {
+        var rSlot = slots[0];
+        var knife = new Knife(_knifeInfo);
+        knife.state.amount = 1;
+        inventory.TryToAddToSlot(this, rSlot, knife);
         return rSlot;
     }
     void OnInventoryStateChanged(object sender)

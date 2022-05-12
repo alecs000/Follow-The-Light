@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad66705554c2b9b47afb7ed1dc412f9d, type: 3}
-  m_Name: InventoryItemInfo
+  m_Name: Kntfe
   m_EditorClassIdentifier: 
-  _id: 
-  _title: 
-  _discription: 
-  _maxItemsInInventorySlot: 0
-  _spriteIcon: {fileID: 0}
+  _id: knife
+  _title: "\u041A\u0438\u043D\u0436\u0430\u043B"
+  _discription: "\u0416\u0443\u0442\u043A\u0438\u0439, \u043D\u043E \u0438\u0437\u044F\u0447\u043D\u044B\u0439
+    \u043A\u043B\u0438\u043D\u043E\u043A"
+  _maxItemsInInventorySlot: 1
+  _spriteIcon: {fileID: 21300000, guid: c504686acb608fe4eb2e55f9c58e2a3d, type: 3}
